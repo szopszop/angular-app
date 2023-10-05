@@ -8,18 +8,18 @@ import {Todo} from "../shared/interfaces/todo.interface";
 })
 export class TodoListComponent {
   todos: Todo[] = [];
+  errorMessage = '';
 
   addTodo(todo: string): void {
     if (todo.length < 3) {
-      alert('Za krótki')
+      this.errorMessage = "Za krótki";
+      return;
     }
     this.todos.push({name: todo, isComplete: false})
     console.log('Aktualna lista todo: ', this.todos);
   }
 
-  changeTodoStatus(todo: Todo) {
-    todo.isComplete = !todo.isComplete;
-
-    console.log(this.todos)
+  clearErrorMessage() {
+    this.errorMessage = '';
   }
 }
