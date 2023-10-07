@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Todo} from "../shared/interfaces/todo.interface";
 
 @Component({
@@ -10,13 +10,19 @@ export class TodoListComponent {
   todos: Todo[] = [];
   errorMessage = '';
 
+  changeStatus(index: number) {
+    this.todos[index] = {
+      ...this.todos[index],
+      isComplete: !this.todos[index].isComplete
+    }
+  }
+
   addTodo(todo: string): void {
     if (todo.length < 3) {
       this.errorMessage = "Za krótki";
       return;
     }
     this.todos.push({name: todo, isComplete: false})
-    console.log('Aktualna lista todo: ', this.todos);
   }
 
   clearErrorMessage() {
@@ -26,4 +32,5 @@ export class TodoListComponent {
   deleteTodo(i: number) {
     this.todos = this.todos.filter((todo, index) => index !== i)
   }
+
 }
