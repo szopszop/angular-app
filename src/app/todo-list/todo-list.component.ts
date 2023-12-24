@@ -1,54 +1,45 @@
-import {
-  Component, OnDestroy, OnInit,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {Todo} from "../shared/interfaces/todo.interface";
-import {TodoService} from "../core/services/todo.service";
-import {TestService} from "../core/services/test.service";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-//  implements AfterViewInit, AfterViewChecked
-export class TodoListComponent implements OnInit, OnDestroy{
-  todos: Todo[] = this.todoService.todos;
+export class TodoListComponent {
+
+  todos: Todo[] = [];
+  inputValue = '';
+  displaySomething = false;
+  isRed = false;
+  useClass = false;
   errorMessage = '';
-  sub!: Subscription;
 
-  constructor(private todoService: TodoService, private testService: TestService) {}
+  addTodo(todo: string): void {
+    if (todo.length < 4) {
+      this.errorMessage = 'Zadanie powinno miec min 4 znaki!';
+      return;
+    }
+    this.todos.push({id: Math.random(),name: todo, isComplete: false});
+    this.inputValue = '';
+  }
 
+  toggleTodo(todo: Todo) {
+    todo.isComplete = !todo.isComplete;
+  }
 
-  ngOnInit(): void {
-     this.sub = this.todoService.todoChanged.subscribe({
-       next: arrTodos => this.todos = arrTodos
-     })
+  displaySomethingFunction(): void {
+    this.displaySomething = !this.displaySomething;
+    this.isRed = !this.isRed;
+    this.useClass = !this.displaySomething;
   }
 
 
-  addTodo(todo: string): void {
-    if(todo.length <= 3) {
-      this.errorMessage = 'Zadanie powinno mieć co najmniej 4 znaki!';
-      return;
-    }
-
-    this.todoService.addTodo(todo);
+  changeTodoStatus(todo: Todo) {
+    todo.isComplete = !todo.isComplete;
   }
 
   clearErrorMessage() {
     this.errorMessage = '';
-  }
-
-  deleteTodo(i: number) {
-    this.todoService.deleteTodo(i);
-  }
-
-  changeTodoStatus(index: number) {
-    this.todoService.changeTodoStatus(index);
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
   }
 }

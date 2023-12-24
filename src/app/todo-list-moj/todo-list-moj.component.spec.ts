@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlertComponent } from './alert.component';
+import { TodoListMojComponent } from './todo-list-moj.component';
 
-describe('AlertComponent', () => {
-  let component: AlertComponent;
-  let fixture: ComponentFixture<AlertComponent>;
+describe('TodoListMojComponent', () => {
+  let component: TodoListMojComponent;
+  let fixture: ComponentFixture<TodoListMojComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlertComponent ]
+      declarations: [ TodoListMojComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AlertComponent);
+    fixture = TestBed.createComponent(TodoListMojComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

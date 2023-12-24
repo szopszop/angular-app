@@ -1,0 +1,15 @@
+<span class="text-center"> NOWE ZADANKA</span>
+<input type="text" #placeForText />
+<button type="button" (click)="addJob(placeForText.value)"> DODAJ JOBA</button>
+<ul class="list-group">
+  <ng-container *ngFor="let job of jobList; let i = index" >
+  <li class="list-group-item" *ngIf="jobList.length > 0">
+    <input type="checkbox"
+    [checked]="job.isComplete"
+    (change)="changeJob(job)">{{i + 1}}.
+    {{job.name}} ## {{job.isComplete}}
+  </li>
+
+</ng-container>
+  <h4 *ngIf="jobList.length == 0">NIE MA JOBÓW</h4>
+</ul>
