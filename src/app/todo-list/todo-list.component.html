@@ -1,5 +1,4 @@
-<app-add-todo-form (addTodoEE)="addTodo($event)"></app-add-todo-form>
-
+<app-add-todo-form (addTodo)="addTodo($event)" ></app-add-todo-form>
 <app-alert *ngIf="errorMessageHere"
            [errorMessageChild]="errorMessageHere"
            (clearMessageChild)="clearErrorMessageHere()"

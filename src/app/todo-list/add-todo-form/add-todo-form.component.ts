@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-add-todo-form',
@@ -8,9 +8,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class AddTodoFormComponent {
 
   @Output()
-  addTodoEE = new EventEmitter<string>();
+  addTodo = new EventEmitter<string>();
 
-  addTodo(todoName: string) {
-    this.addTodoEE.emit(todoName);
+
+  addNewTodo(todoName: string) {
+    this.addTodo.emit(todoName);
   }
 }
