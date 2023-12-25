@@ -1,11 +1,12 @@
 <p class="mt-4">Dodaj nowe zadanie:</p>
 <input [(ngModel)]="inputValue" type="text" class="form-control" name="todo">
 <button type="button" class="btn btn-primary mt-3" (click)="addTodo(inputValue)">Dodaj zadanie</button>
-<div class="alert alert-warning alert-dismissible fade show mt-2" role="alert" *ngIf="errorMessage">
-  {{errorMessage}}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-          (click)="clearErrorMessage()"></button>
-</div>
+
+<app-alert *ngIf="errorMessageHere"
+           [errorMessageChild]="errorMessageHere"
+           (clearMessageChild)="clearErrorMessageHere()"
+></app-alert>
+
 <p *ngIf="displaySomething">WYŚWEITLAM </p>
 <button type="button" class="btn btn-dark mt-3" (click)="displaySomethingFunction()">WYSWIETL COS</button>
 

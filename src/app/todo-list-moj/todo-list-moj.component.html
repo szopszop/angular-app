@@ -4,6 +4,10 @@
   <button type="button" class="btn-dark btn my-2" (click)="addMessage(textMessage.name)">tutaj</button>
   <ul class="list-group" *ngIf="messages.length > 0">
     <li class="list-group-item" *ngFor="let message of messages; let i = index">
+      <input type="checkbox"
+      [checked]="message.isOkay"
+      (click)="markOkay(message)"
+      >
       {{message.number}}. {{message.text}} {{message.isOkay ? "OK" : "NOT OKAY"}}
     </li>
   </ul>

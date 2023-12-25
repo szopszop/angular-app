@@ -13,11 +13,11 @@ export class TodoListComponent {
   displaySomething = false;
   isRed = false;
   useClass = false;
-  errorMessage = '';
+  errorMessageHere = '';
 
   addTodo(todo: string): void {
     if (todo.length < 4) {
-      this.errorMessage = 'Zadanie powinno miec min 4 znaki!';
+      this.errorMessageHere = 'Zadanie powinno miec min 4 znaki!';
       return;
     }
     this.todos.push({id: Math.random(),name: todo, isComplete: false});
@@ -34,12 +34,11 @@ export class TodoListComponent {
     this.useClass = !this.displaySomething;
   }
 
-
   changeTodoStatus(todo: Todo) {
     todo.isComplete = !todo.isComplete;
   }
 
-  clearErrorMessage() {
-    this.errorMessage = '';
+  clearErrorMessageHere() {
+    this.errorMessageHere = '';
   }
 }

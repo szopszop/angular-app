@@ -9,13 +9,15 @@ import {Todo} from "../shared/interfaces/todo.interface";
 export class AnotherTodoComponent {
 
   jobList: Todo[] = [];
+  inputValue = '';
 
 
   addJob(job: string) {
-    this.jobList.push({id: Math.random(), name: job, isComplete: false})
+    this.jobList.push({id: Math.random(), name: job, isComplete: false});
+    this.inputValue = '';
   }
 
-  changeJob(job: Todo) {
+  toggleJob(job: Todo) {
     job.isComplete = !job.isComplete;
   }
 

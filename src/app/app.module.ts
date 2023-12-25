@@ -9,6 +9,7 @@ import { TodoListMojComponent } from './todo-list-moj/todo-list-moj.component';
 import { AnotherTodoComponent } from './another-todo/another-todo.component';
 import { SzymekComponent } from './szymek/szymek.component';
 import {FormsModule} from "@angular/forms";
+import { AlertComponent } from './shared/components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {FormsModule} from "@angular/forms";
     FooterComponent,
     TodoListMojComponent,
     AnotherTodoComponent,
-    SzymekComponent
+    SzymekComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
