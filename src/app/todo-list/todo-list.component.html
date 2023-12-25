@@ -1,6 +1,3 @@
-<p class="mt-4">Dodaj nowe zadanie:</p>
-<input [(ngModel)]="inputValue" type="text" class="form-control" name="todo">
-<button type="button" class="btn btn-primary mt-3" (click)="addTodo(inputValue)">Dodaj zadanie</button>
 
 <app-alert *ngIf="errorMessageHere"
            [errorMessageChild]="errorMessageHere"
