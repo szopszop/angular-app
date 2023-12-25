@@ -10,6 +10,7 @@ import { AnotherTodoComponent } from './another-todo/another-todo.component';
 import { SzymekComponent } from './szymek/szymek.component';
 import {FormsModule} from "@angular/forms";
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { Alert2Component } from './shared/components/alert2/alert2.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     TodoListMojComponent,
     AnotherTodoComponent,
     SzymekComponent,
-    AlertComponent
+    AlertComponent,
+    Alert2Component
   ],
   imports: [
     BrowserModule,
