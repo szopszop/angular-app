@@ -1,1 +1,6 @@
-<p>alert2 works!</p>
+<div class="alert alert-warning alert-dismissible fade show mt-2" role="alert" *ngIf="errorMessageChild">
+  {{errorMessageChild}}
+  <button type="button" (click)="clearErrorMessage()">
+    X
+  </button>
+</div>

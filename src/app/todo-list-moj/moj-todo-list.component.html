@@ -1,0 +1,23 @@
+<div class="border-primary mt-3">
+  <h4>TODO LIST</h4>
+  <input type="text" [ngModel]="inputValue" class="form-control" name="todo">
+  <button type="button"
+  (click)="addTodo(inputValue)"
+  >ADD</button>
+
+<app-alert2 [errorMessageChild]="errorMessage" (clearErrorMessageChild)="clearErrorMessage()"></app-alert2>
+
+  <hr/>
+  <ul class="list-group" *ngFor="let todo of todos; let i = index">
+    <li class="list-group-item">
+      <input type="checkbox"
+      [checked]="todo.isComplete"
+      [ngClass]="todo.isComplete ? 'text-decoration-line-through' : 'initial'"
+             (click)="toggleTodo(todo)"
+      >
+      <span>{{i + 1}}. {{todo.name}} {{ todo.id }}</span>
+    </li>
+
+  </ul>
+
+</div>

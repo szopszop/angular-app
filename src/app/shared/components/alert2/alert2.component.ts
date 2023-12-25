@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-alert2',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./alert2.component.css']
 })
 export class Alert2Component {
+  @Input()
+  errorMessageChild!: string;
+  @Output()
+  clearErrorMessageChild = new EventEmitter<void>();
 
+  clearErrorMessage() {
+    this.clearErrorMessageChild.emit();
+  }
 }
