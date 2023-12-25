@@ -9,7 +9,6 @@ import {Todo} from "../shared/interfaces/todo.interface";
 export class TodoListComponent {
 
   todos: Todo[] = [];
-  inputValue = '';
   displaySomething = false;
   isRed = false;
   useClass = false;
@@ -21,7 +20,6 @@ export class TodoListComponent {
       return;
     }
     this.todos.push({id: Math.random(),name: todo, isComplete: false});
-    this.inputValue = '';
   }
 
   toggleTodo(todo: Todo) {

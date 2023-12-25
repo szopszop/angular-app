@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-add-todo-form',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AddTodoFormComponent {
 
+  @Output()
+  addTodoEE = new EventEmitter<string>();
+
+  addTodo(todoName: string) {
+    this.addTodoEE.emit(todoName);
+  }
 }
