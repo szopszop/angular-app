@@ -9,7 +9,9 @@
       <app-todo [todo]="todo"
                 [i]="i"
                 [action]="'Usuń'"
-                (delete)="deleteTodo(i)">
+                (delete)="deleteTodo(i)"
+                (changeStatus)="changeTodoStatus($event)"
+      >
 
       </app-todo>
     </ng-container>

@@ -6,15 +6,13 @@ import {Todo} from "../shared/interfaces/todo.interface";
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent implements OnChanges {
+export class TodoListComponent {
 
   todos: Todo[] = [];
   finishedTodos: Todo[] = [];
   errorMessage = '';
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
-  }
+
 
   addTodo(todo: string): void {
     if(todo.length <= 3) {
@@ -37,5 +35,12 @@ export class TodoListComponent implements OnChanges {
   resurrectTodo(i: number) {
     this.todos.push(this.finishedTodos[i]);
     this.finishedTodos = this.finishedTodos.filter((todo, index) => index !== i)
+  }
+
+  changeTodoStatus(index: number) {
+    this.todos[index] = {
+      ...this.todos[index], // kopia obiektu
+      isComplete: !this.todos[index].isComplete
+    }
   }
 }

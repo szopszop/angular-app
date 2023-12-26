@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Todo} from "../../shared/interfaces/todo.interface";
 
 @Component({
@@ -11,22 +11,17 @@ export class TodoComponent {
   @Input() i!: number;
   @Input() action!: string;
   @Output() delete = new EventEmitter<void>();
-
+  @Output() changeStatus = new EventEmitter<number>();
   titleDelete = 'Czy chcesz usunać to zadanie?';
+
   titleResurrect = 'Czy chcesz przwrócić to zadanie?';
   titleExtraDelete = 'Czy aby na pewno chcesz usunąć to zadanie?'
   titleExtraResurrect = 'Czy aby na pewno chcesz przywrócić to zadanie?'
-
-
   openModal = false;
   openExtraModal = false;
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   console.log(changes)
-  // }
-
-  changeTodoStatus(todo: Todo) {
-    todo.isComplete = !todo.isComplete;
+  changeTodoStatus() {
+    this.changeStatus.emit(this.i);
   }
 
   toggleModal() {
