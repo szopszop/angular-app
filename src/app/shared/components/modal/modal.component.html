@@ -1,1 +1,10 @@
-<p>modal works!</p>
+<div class="backdrop" (click)="onClose()">
+
+</div>
+<div class="modal-wrapper">
+  <span class="btn-close" (click)="onClose()">
+
+  </span>
+  <h4>{{title}}</h4>
+<ng-content></ng-content>
+</div>

@@ -7,10 +7,15 @@ import {Todo} from "../../shared/interfaces/todo.interface";
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent {
- @Input() todo!: Todo;
- @Input() i!: number;
+  @Input() todo!: Todo;
+  @Input() i!: number;
+  openModal = false;
 
   changeTodoStatus(todo: Todo) {
     todo.isComplete = !todo.isComplete;
+  }
+
+  toggleModal() {
+    this.openModal = !this.openModal;
   }
 }
