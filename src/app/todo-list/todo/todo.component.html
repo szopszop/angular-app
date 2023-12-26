@@ -1,0 +1,10 @@
+<li class="list-group-item">
+  <input type="checkbox"
+         class="form-check-input my-1"
+         [checked]="todo.isComplete"
+         (change)="toggleTodo(todo)"
+  >
+  <span class="todo-item"
+        [ngStyle]="{'text-decoration': todo.isComplete ? 'line-through': 'initial'}"
+  > {{i + 1}}{{todo.name}} </span>
+</li>

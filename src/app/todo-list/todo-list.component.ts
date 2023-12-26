@@ -22,18 +22,10 @@ export class TodoListComponent {
     this.todos.push({id: Math.random(),name: todo, isComplete: false});
   }
 
-  toggleTodo(todo: Todo) {
-    todo.isComplete = !todo.isComplete;
-  }
-
   displaySomethingFunction(): void {
     this.displaySomething = !this.displaySomething;
     this.isRed = !this.isRed;
     this.useClass = !this.displaySomething;
-  }
-
-  changeTodoStatus(todo: Todo) {
-    todo.isComplete = !todo.isComplete;
   }
 
   clearErrorMessageHere() {
