@@ -12,8 +12,8 @@ export class TodoComponent {
   @Input() action!: string;
   @Output() delete = new EventEmitter<void>();
 
-  titleDelete = 'Czy na pewno chcesz usunać zadanie o numerze ';
-  titleResurrect = 'Czy na pewno chcesz przwrócić zadanie o numerze ';
+  titleDelete = 'Czy chcesz usunać to zadanie?';
+  titleResurrect = 'Czy chcesz przwrócić to zadanie?';
   titleExtraDelete = 'Czy aby na pewno chcesz usunąć to zadanie?'
   titleExtraResurrect = 'Czy aby na pewno chcesz przywrócić to zadanie?'
 

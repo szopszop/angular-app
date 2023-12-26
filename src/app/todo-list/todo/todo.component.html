@@ -11,7 +11,7 @@
 
 </li>
 
-<app-modal [title]="titleDelete + (i + 1) + '?'"
+<app-modal [title]="!todo.isComplete ? titleDelete : titleResurrect"
            (close)="toggleModal()"
            *ngIf="openModal"
 >
@@ -21,9 +21,11 @@
   </div>
 </app-modal>
 
-<app-modal [title]=""
+<app-modal [title]="!todo.isComplete ? titleExtraDelete : titleExtraResurrect"
            (close)="toggleExtraModal()"
            *ngIf="openExtraModal"
 >
-<button class="btn btn-danger btn-sm mx-2" (click)="deleteTodo()"></button>
+  <button class="btn btn-danger btn-sm mx-2" (click)="deleteTodo()"> {{ action }}</button>
+  <button class="btn btn-info btn-sm " (click)="toggleExtraModal()">Anuluj</button>
+
 </app-modal>
