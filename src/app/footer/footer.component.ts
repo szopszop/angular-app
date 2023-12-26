@@ -4,12 +4,11 @@ import { Component } from '@angular/core';
   selector: 'app-footer',
   template: `
     <p class="text-center">
-      &copy; Prawa zastrzezone!
+      &copy; Prawa zastrzeżone
     </p>
   `,
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-
 
 }

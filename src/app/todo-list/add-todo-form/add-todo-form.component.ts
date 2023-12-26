@@ -6,10 +6,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./add-todo-form.component.css']
 })
 export class AddTodoFormComponent {
-
-  @Output()
-  addTodo = new EventEmitter<string>();
-
+  @Output() addTodo = new EventEmitter<string>();
 
   addNewTodo(todoName: string) {
     this.addTodo.emit(todoName);

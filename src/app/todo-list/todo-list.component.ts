@@ -9,26 +9,19 @@ import {Todo} from "../shared/interfaces/todo.interface";
 export class TodoListComponent {
 
   todos: Todo[] = [];
-  displaySomething = false;
-  isRed = false;
-  useClass = false;
-  errorMessageHere = '';
+  errorMessage = '';
 
   addTodo(todo: string): void {
-    if (todo.length < 4) {
-      this.errorMessageHere = 'Zadanie powinno miec min 4 znaki!';
+    if(todo.length <= 3) {
+      this.errorMessage = 'Zadanie powinno mieć co najmniej 4 znaki!';
       return;
     }
-    this.todos.push({id: Math.random(),name: todo, isComplete: false});
+
+    this.todos.push({ name: todo, isComplete: false});
+    console.log('Aktualna lista todo: ', this.todos);
   }
 
-  displaySomethingFunction(): void {
-    this.displaySomething = !this.displaySomething;
-    this.isRed = !this.isRed;
-    this.useClass = !this.displaySomething;
-  }
-
-  clearErrorMessageHere() {
-    this.errorMessageHere = '';
+  clearErrorMessage() {
+    this.errorMessage = '';
   }
 }

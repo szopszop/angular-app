@@ -6,13 +6,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['./alert.component.css']
 })
 export class AlertComponent {
-  @Input()
-  errorMessageChild!: string;
-
-  @Output()
-  clearMessageChild = new EventEmitter<void>();
+  @Input() errorMessage!: string;
+  @Output() clearMessage = new EventEmitter<void>();
 
   clearErrorMessage() {
-    this.clearMessageChild.emit();
+    this.clearMessage.emit();
   }
 }
