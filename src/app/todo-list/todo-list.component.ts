@@ -9,6 +9,7 @@ import {Todo} from "../shared/interfaces/todo.interface";
 export class TodoListComponent {
 
   todos: Todo[] = [];
+  finishedTodos: Todo[] = [];
   errorMessage = '';
 
   addTodo(todo: string): void {
@@ -26,6 +27,12 @@ export class TodoListComponent {
   }
 
   deleteTodo(i: number) {
+    this.finishedTodos.push(this.todos[i]);
     this.todos = this.todos.filter((todo, index) => index !== i)
+  }
+
+  resurrectTodo(i: number) {
+    this.todos.push(this.finishedTodos[i]);
+    this.finishedTodos = this.finishedTodos.filter((todo, index) => index !== i)
   }
 }

@@ -7,17 +7,23 @@
   >
   <span class="todo-item" [ngClass]="{'text-decoration-line-through': todo.isComplete}">{{ i + 1 }}
     . {{ todo.name }}</span>
-  <button type="button" class="btn btn-danger btn-sm mx-2" (click)="toggleModal()">Usuń</button>
+  <button type="button" class="btn btn-danger btn-sm mx-2" (click)="toggleModal()">{{ action }}</button>
 
 </li>
 
-<app-modal [title]="'Czy na pewno chcesz usunać zadanie o numerze' + (i + 1) + '?'"
+<app-modal [title]="titleDelete + (i + 1) + '?'"
            (close)="toggleModal()"
            *ngIf="openModal"
 >
-  <p up>Wyświetlam sie powyzej</p>
   <div class="d-flex justify-content-end">
-    <button class="btn btn-danger btn-sm mx-2" (click)="deleteTodo()">Usuń</button>
+    <button class="btn btn-danger btn-sm mx-2" (click)="toggleExtraModal()">{{ action }}</button>
     <button class="btn btn-info btn-sm " (click)="toggleModal()">Anuluj</button>
   </div>
+</app-modal>
+
+<app-modal [title]=""
+           (close)="toggleExtraModal()"
+           *ngIf="openExtraModal"
+>
+<button class="btn btn-danger btn-sm mx-2" (click)="deleteTodo()"></button>
 </app-modal>

@@ -9,10 +9,17 @@ import {Todo} from "../../shared/interfaces/todo.interface";
 export class TodoComponent {
   @Input() todo!: Todo;
   @Input() i!: number;
-  @Output()
-  delete = new EventEmitter<void>();
+  @Input() action!: string;
+  @Output() delete = new EventEmitter<void>();
+
+  titleDelete = 'Czy na pewno chcesz usunać zadanie o numerze ';
+  titleResurrect = 'Czy na pewno chcesz przwrócić zadanie o numerze ';
+  titleExtraDelete = 'Czy aby na pewno chcesz usunąć to zadanie?'
+  titleExtraResurrect = 'Czy aby na pewno chcesz przywrócić to zadanie?'
+
 
   openModal = false;
+  openExtraModal = false;
 
   changeTodoStatus(todo: Todo) {
     todo.isComplete = !todo.isComplete;
@@ -20,6 +27,10 @@ export class TodoComponent {
 
   toggleModal() {
     this.openModal = !this.openModal;
+  }
+
+  toggleExtraModal() {
+    this.openExtraModal = !this.openExtraModal;
   }
 
   deleteTodo() {
