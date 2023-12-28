@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+/.eslintrc.json
+/.prettierignore
+/.prettierrc.json
+/src/app/shared/pipes/first-letter-uppercase.pipe.spec.ts
+/src/app/shared/pipes/first-letter-uppercase.pipe.ts
