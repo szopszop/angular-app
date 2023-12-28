@@ -1,17 +1,20 @@
-import {Component, OnChanges, SimpleChanges} from '@angular/core';
+import {
+  Component,
+} from '@angular/core';
 import {Todo} from "../shared/interfaces/todo.interface";
+import {TodoService} from "../core/services/todo.service";
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent {
-
-  todos: Todo[] = [];
-  finishedTodos: Todo[] = [];
+//  implements AfterViewInit, AfterViewChecked
+export class TodoListComponent{
+  todos: Todo[] = this.todoService.todos;
   errorMessage = '';
 
+  constructor(private todoService: TodoService) {}
 
 
   addTodo(todo: string): void {
@@ -20,7 +23,8 @@ export class TodoListComponent {
       return;
     }
 
-    this.todos.push({ name: todo, isComplete: false});
+    this.todoService.addTodo(todo);
+    this.todos = this.todoService.todos;
   }
 
   clearErrorMessage() {
@@ -28,19 +32,12 @@ export class TodoListComponent {
   }
 
   deleteTodo(i: number) {
-    this.finishedTodos.push(this.todos[i]);
-    this.todos = this.todos.filter((todo, index) => index !== i)
-  }
-
-  resurrectTodo(i: number) {
-    this.todos.push(this.finishedTodos[i]);
-    this.finishedTodos = this.finishedTodos.filter((todo, index) => index !== i)
+    this.todoService.deleteTodo(i);
+    this.todos = this.todoService.todos;
   }
 
   changeTodoStatus(index: number) {
-    this.todos[index] = {
-      ...this.todos[index], // kopia obiektu
-      isComplete: !this.todos[index].isComplete
-    }
+    this.todoService.changeTodoStatus(index);
+    this.todos = this.todoService.todos;
   }
 }
