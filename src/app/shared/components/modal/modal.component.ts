@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {from, interval, of, Subscription} from "rxjs";
+import {from, interval, map, of, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-modal',
@@ -22,6 +22,10 @@ export class ModalComponent implements OnInit, OnDestroy {
       error: err => console.log(err),
       complete: () => console.log("test")
     })
+    of(1,2,3).pipe(map(numb => numb * 2))
+      .subscribe(
+        (numb) => console.log(numb)
+      )
     console.log(this.sub);
 
   }
