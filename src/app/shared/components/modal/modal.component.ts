@@ -1,34 +1,35 @@
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  Component,
-  ContentChild,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output
-} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {from, interval, of, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements AfterContentInit, AfterContentChecked{
+export class ModalComponent implements OnInit, OnDestroy {
   @Input() title!: string;
   @Output() close = new EventEmitter<void>();
-  @ContentChild('modalDiv') modalDiv!: ElementRef;
-  // @ContentChild('check') checkBox!: ElementRef;
-
-  ngAfterContentInit(): void {
-    // console.log(this.modalDiv)
-  }
-
-  ngAfterContentChecked(): void {
-    // console.log(this.checkBox.nativeElement.checked)
-  }
+  sub!: Subscription;
+  obs$ = interval(1000)
 
   onClose() {
     this.close.emit();
   }
+
+  ngOnInit(): void {
+    this.sub = from([1,2,3]).subscribe({
+      next: value => console.log(value),
+      error: err => console.log(err),
+      complete: () => console.log("test")
+    })
+    console.log(this.sub);
+
+  }
+
+  ngOnDestroy(): void {
+    console.log(this.sub);
+    this.sub.unsubscribe();
+  }
+
+
 }
