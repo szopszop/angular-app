@@ -1,8 +1,9 @@
 import {
-  Component,
+  Component, OnDestroy, OnInit,
 } from '@angular/core';
 import {Todo} from "../shared/interfaces/todo.interface";
 import {TodoService} from "../core/services/todo.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-todo-list',
@@ -10,12 +11,18 @@ import {TodoService} from "../core/services/todo.service";
   styleUrls: ['./todo-list.component.css']
 })
 //  implements AfterViewInit, AfterViewChecked
-export class TodoListComponent{
+export class TodoListComponent implements OnInit, OnDestroy {
   todos: Todo[] = this.todoService.getTodos;
-  errorMessage = '';
 
+  errorMessage = '';
+  sub!: Subscription;
   constructor(private todoService: TodoService) {}
 
+  ngOnInit(): void {
+    this.sub = this.todoService.todoChanged.subscribe({
+      next: arrTodos => this.todos = arrTodos
+    });
+  }
 
   addTodo(todo: string): void {
     if(todo.length <= 3) {
@@ -39,5 +46,9 @@ export class TodoListComponent{
   changeTodoStatus(index: number) {
     this.todoService.changeTodoStatus(index);
     this.todos = this.todoService.getTodos;
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
