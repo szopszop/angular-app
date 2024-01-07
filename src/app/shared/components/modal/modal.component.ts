@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {from, interval, map, of, Subscription} from "rxjs";
+import {from, interval, map, of, Subject, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-modal',
@@ -9,7 +9,7 @@ import {from, interval, map, of, Subscription} from "rxjs";
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() title!: string;
   @Output() close = new EventEmitter<void>();
-  sub!: Subscription;
+  sub: Subscription = new Subscription();
   obs$ = interval(1000)
 
   onClose() {
@@ -17,7 +17,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sub = from([1,2,3]).subscribe({
+    /*this.sub = from([1,2,3]).subscribe({
       next: value => console.log(value),
       error: err => console.log(err),
       complete: () => console.log("test")
@@ -26,8 +26,13 @@ export class ModalComponent implements OnInit, OnDestroy {
       .subscribe(
         (numb) => console.log(numb)
       )
-    console.log(this.sub);
+    console.log(this.sub);*/
+    const subject = new Subject<number>();
+    this.sub.add(subject.subscribe({
+      next: value => console.log(value)
+    }))
 
+    console.log(this.sub);
   }
 
   ngOnDestroy(): void {

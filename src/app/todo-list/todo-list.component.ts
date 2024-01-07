@@ -11,7 +11,7 @@ import {TodoService} from "../core/services/todo.service";
 })
 //  implements AfterViewInit, AfterViewChecked
 export class TodoListComponent{
-  todos: Todo[] = this.todoService.todos;
+  todos: Todo[] = this.todoService.getTodos;
   errorMessage = '';
 
   constructor(private todoService: TodoService) {}
@@ -24,7 +24,7 @@ export class TodoListComponent{
     }
 
     this.todoService.addTodo(todo);
-    this.todos = this.todoService.todos;
+    this.todos = this.todoService.getTodos;
   }
 
   clearErrorMessage() {
@@ -33,11 +33,11 @@ export class TodoListComponent{
 
   deleteTodo(i: number) {
     this.todoService.deleteTodo(i);
-    this.todos = this.todoService.todos;
+    this.todos = this.todoService.getTodos;
   }
 
   changeTodoStatus(index: number) {
     this.todoService.changeTodoStatus(index);
-    this.todos = this.todoService.todos;
+    this.todos = this.todoService.getTodos;
   }
 }
